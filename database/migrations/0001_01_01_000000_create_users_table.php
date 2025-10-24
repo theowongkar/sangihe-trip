@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('phone', 20);
+            $table->enum('role', ['Admin', 'Pengunjung'])->default('Pengunjung');
+            $table->enum('status', ['Aktif', 'Tidak Aktif'])->default('Aktif');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'role',
+        'status'
     ];
 
     /**
@@ -44,5 +47,18 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+
+    // Relasi: user menulis banyak artikel
+    public function articles()
+    {
+        return $this->hasMany(Article::class, 'author_id');
+    }
+
+    // Relasi: user memberi banyak review
+    public function productReviews()
+    {
+        return $this->hasMany(ProductReview::class);
     }
 }
