@@ -9,6 +9,8 @@ use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProductReviewController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\UserController as DashboardUserController;
+use App\Http\Controllers\Dashboard\ProductCategoryController as DashboardProductCategoryController;
 
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -48,4 +50,18 @@ Route::middleware('auth', 'isActiveUser')->group(function () {
 Route::middleware('auth', 'isActiveUser', 'isAdmin')->group(function () {
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Dashboard User
+    Route::get('/dashboard/pengguna', [DashboardUserController::class, 'index'])->name('dashboard.user.index');
+    Route::get('/dashboard/pengguna/tambah', [DashboardUserController::class, 'create'])->name('dashboard.user.create');
+    Route::post('/dashboard/pengguna/tambah', [DashboardUserController::class, 'store'])->name('dashboard.user.store');
+    Route::get('/dashboard/pengguna/{user}/ubah', [DashboardUserController::class, 'edit'])->name('dashboard.user.edit');
+    Route::put('/dashboard/pengguna/{user}/ubah', [DashboardUserController::class, 'update'])->name('dashboard.user.update');
+    Route::delete('/dashboard/pengguna/{user}/hapus', [DashboardUserController::class, 'destroy'])->name('dashboard.user.destroy');
+
+    // Dashboard Kategori Produk
+    Route::get('/dashboard/kategori-produk', [DashboardProductCategoryController::class, 'index'])->name('dashboard.product-category.index');
+    Route::post('/dashboard/kategori-produk/tambah', [DashboardProductCategoryController::class, 'store'])->name('dashboard.product-category.store');
+    Route::put('/dashboard/kategori-produk/{productCategory:slug}/ubah', [DashboardProductCategoryController::class, 'update'])->name('dashboard.product-category.update');
+    Route::delete('/dashboard/kategori-produk/{productCategory:slug}/hapus', [DashboardProductCategoryController::class, 'destroy'])->name('dashboard.product-category.destroy');
 });
