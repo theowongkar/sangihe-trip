@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('owner_name', 100);
             $table->string('owner_phone', 20);
             $table->text('address');
-            $table->string('gmaps_link')->nullable();
+            $table->text('gmaps_link')->nullable();
             $table->enum('status', ['Draf', 'Terbit', 'Arsip'])->default('Draf');
             $table->timestamps();
         });
@@ -47,8 +47,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->enum('day', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']);
-            $table->time('open_time');
-            $table->time('close_time');
+            $table->time('open_time')->nullable();
+            $table->time('close_time')->nullable();
             $table->boolean('is_open')->default(true);
             $table->timestamps();
         });

@@ -17,7 +17,7 @@
                 <h3 class="mb-3 font-bold">Akses Cepat</h3>
                 <ul class="space-y-1">
                     <li><a href="{{ route('home') }}" class="hover:underline">Beranda</a></li>
-                    <li><a href="#" class="hover:underline">Produk</a></li>
+                    <li><a href="{{ route('product.index') }}" class="hover:underline">Produk</a></li>
                     <li><a href="#" class="hover:underline">Artikel</a></li>
                 </ul>
             </div>
@@ -26,9 +26,12 @@
             <div>
                 <h3 class="mb-3 font-bold">Kategori Populer</h3>
                 <ul class="space-y-1">
-                    <li><a href="#" class="hover:underline">Destinasi Wisata</a></li>
-                    <li><a href="#" class="hover:underline">Makanan & Minuman</a></li>
-                    <li><a href="#" class="hover:underline">Kerajinan & Handmade</a></li>
+                    <li><a href="{{ route('product.index', ['category' => 'destinasi-wisata']) }}"
+                            class="hover:underline">Destinasi Wisata</a></li>
+                    <li><a href="{{ route('product.index', ['category' => 'makanan-minuman']) }}"
+                            class="hover:underline">Makanan & Minuman</a></li>
+                    <li><a href="{{ route('product.index', ['category' => 'kerajinan-handmade']) }}"
+                            class="hover:underline">Kerajinan & Handmade</a></li>
                 </ul>
             </div>
 

@@ -52,19 +52,31 @@ class DatabaseSeeder extends Seeder
         }
 
         // Buat produk
-        Product::factory(30)->create([
-            'product_category_id' => ProductCategory::inRandomOrder()->first()?->id,
-        ])->each(function ($product) {
+        Product::factory(30)->create()->each(function ($product) {
+            $product->update([
+                'product_category_id' => ProductCategory::inRandomOrder()->first()->id,
+            ]);
 
             // Jam Operasional
             $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
             foreach ($days as $day) {
+                // Random apakah buka hari itu atau tidak
+                $isOpen = fake()->boolean(90);
+
+                if ($isOpen) {
+                    $openTime = fake()->time('H:i:s', '10:00:00');
+                    $closeTime = fake()->time('H:i:s', '22:00:00');
+                } else {
+                    $openTime = null;
+                    $closeTime = null;
+                }
+
                 ProductOperatingHour::factory()->create([
                     'product_id' => $product->id,
                     'day' => $day,
-                    'open_time' => '08:00:00',
-                    'close_time' => '17:00:00',
-                    'is_open' => true,
+                    'open_time' => $openTime,
+                    'close_time' => $closeTime,
+                    'is_open' => $isOpen,
                 ]);
             }
 

@@ -11,8 +11,11 @@
 
             {{-- Search Form --}}
             <ul class="flex justify-center gap-4">
-                <li><a href="{{ route('home') }}" class="font-medium">Beranda</a></li>
-                <li><a href="#" class="font-medium">Produk</a></li>
+                <li><a href="{{ route('home') }}"
+                        class="font-medium {{ Route::is('home') ? 'animate-pulse' : '' }}">Beranda</a></li>
+                <li><a href="{{ route('product.index') }}"
+                        class="font-medium {{ Route::is('product.*') ? 'animate-pulse' : '' }}">Produk</a>
+                </li>
                 <li><a href="#" class="font-medium">Perjalanan</a></li>
                 <li><a href="#" class="font-medium">Artikel</a></li>
             </ul>
