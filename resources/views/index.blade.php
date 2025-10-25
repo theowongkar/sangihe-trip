@@ -125,7 +125,7 @@
             <h2 class="mb-5 text-xl font-bold">Artikel Terbaru</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 @forelse ($articles as $article)
-                    <a href="#"
+                    <a href="{{ route('article.show', $article->slug) }}"
                         class="w-full flex flex-col bg-white border border-gray-300 rounded-lg shadow overflow-hidden">
                         <img src="{{ $article->image_path ? asset('storage/' . $article->image_path) : asset('img/placeholder-image.webp') }}"
                             alt="{{ implode(' ', array_slice(explode(' ', $article->title), 0, 2)) }}"
@@ -138,7 +138,7 @@
                 @empty
                     <div class="col-span-2 md:col-span-4 lg:col-span-5 text-center py-10">
                         <p class="text-lg font-semibold text-gray-700">
-                            Oops, produk belum tersedia.
+                            Oops, artikel belum tersedia.
                         </p>
                         <p class="text-gray-500 mt-1">
                             Ayo dukung UMKM dan cek artikel lainnya!

@@ -3,8 +3,7 @@
         <div class="flex flex-col lg:flex-row items-center justify-between gap-2 py-4">
             {{-- Logo --}}
             <div class="flex flex-1">
-                <a href="{{ route('home') }}" class="flex items-center justify-start gap-x-2">
-                    <img src="{{ asset('img/application-logo.svg') }}" alt="Logo Aplikasi" class="w-10 h-10" />
+                <a href="{{ route('home') }}">
                     <h3 class="font-bold text-xl md:text-2xl">SangiheTrip</h3>
                 </a>
             </div>
@@ -17,7 +16,8 @@
                         class="font-medium {{ Route::is('product.*') ? 'animate-pulse' : '' }}">Produk</a>
                 </li>
                 <li><a href="#" class="font-medium">Perjalanan</a></li>
-                <li><a href="#" class="font-medium">Artikel</a></li>
+                <li><a href="{{ route('article.index') }}"
+                        class="font-medium {{ Route::is('article.*') ? 'animate-pulse' : '' }}">Artikel</a></li>
             </ul>
 
             {{-- Navigasi User --}}

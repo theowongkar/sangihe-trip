@@ -3,8 +3,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-5 py-12">
             {{-- Logo --}}
             <div class="lg:col-span-2">
-                <div class="flex items-center justify-start gap-x-2">
-                    <img src="{{ asset('img/application-logo.svg') }}" alt="Logo Aplikasi" class="w-14 h-14" />
+                <div>
                     <h3 class="text-2xl font-bold">SangiheTrip</h3>
                 </div>
 

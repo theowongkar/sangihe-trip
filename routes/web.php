@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -10,3 +11,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // Produk
 Route::get('/produk', [ProductController::class, 'index'])->name('product.index');
 Route::get('/produk/{slug}', [ProductController::class, 'show'])->name('product.show');
+
+// Artikel
+Route::get('/artikel', [ArticleController::class, 'index'])->name('article.index');
+Route::get('/artikel/{slug}', [ArticleController::class, 'show'])->name('article.show');
