@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin Sangihe',
             'email' => 'admin@sangihetrip.com',
             'role' => 'Admin',
+            'status' => 'Aktif',
         ]);
 
         // Buat pengguna acak

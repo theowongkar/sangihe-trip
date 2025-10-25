@@ -39,6 +39,11 @@
                                 <p class="text-sm text-gray-800">{{ auth()->user()->role }}</p>
                             </div>
 
+                            @if (auth()->user()->role == 'Admin')
+                                <a href="{{ route('dashboard') }}"
+                                    class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">Dashboard Admin</a>
+                            @endif
+
                             <a href="{{ route('profile.edit') }}"
                                 class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">Profil
                                 Saya</a>

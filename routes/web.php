@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProductReviewController;
+use App\Http\Controllers\Dashboard\DashboardController;
 
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -41,4 +42,10 @@ Route::middleware('auth', 'isActiveUser')->group(function () {
     // Review Produk
     Route::post('/review/{product}', [ProductReviewController::class, 'upsert'])->middleware('throttle:5,5')->name('product-review.upsert');
     Route::delete('/review/{product}', [ProductReviewController::class, 'destroy'])->middleware('throttle:5,5')->name('product-review.destroy');
+});
+
+
+Route::middleware('auth', 'isActiveUser', 'isAdmin')->group(function () {
+    // Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
