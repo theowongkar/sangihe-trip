@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -56,8 +57,14 @@ class ProductController extends Controller
             ->firstOrFail();
 
         // Ambil review produk
-        $reviews = $product->reviews()->latest()->paginate(10);
+        $reviews = $product->reviews()->latest()->paginate(5);
 
-        return view('products.show', compact('product', 'reviews'));
+        // Ambil review user yang sedang login (jika ada)
+        $userReview = null;
+        if (Auth::check()) {
+            $userReview = $product->reviews()->where('user_id', Auth::id())->first();
+        }
+
+        return view('products.show', compact('product', 'reviews', 'userReview'));
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ProductReviewController;
 
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -18,7 +19,6 @@ Route::get('/produk/{slug}', [ProductController::class, 'show'])->name('product.
 // Artikel
 Route::get('/artikel', [ArticleController::class, 'index'])->name('article.index');
 Route::get('/artikel/{slug}', [ArticleController::class, 'show'])->name('article.show');
-
 
 Route::middleware('guest')->group(function () {
     // Login
@@ -37,4 +37,8 @@ Route::middleware('auth', 'isActiveUser')->group(function () {
     // Edit Profil
     Route::get('/profil-saya', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profil-saya', [ProfileController::class, 'update'])->middleware('throttle:5,5')->name('profile.update');
+
+    // Review Produk
+    Route::post('/review/{product}', [ProductReviewController::class, 'upsert'])->middleware('throttle:5,5')->name('product-review.upsert');
+    Route::delete('/review/{product}', [ProductReviewController::class, 'destroy'])->middleware('throttle:5,5')->name('product-review.destroy');
 });
