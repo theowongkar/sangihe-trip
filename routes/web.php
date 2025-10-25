@@ -11,6 +11,7 @@ use App\Http\Controllers\ProductReviewController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\UserController as DashboardUserController;
 use App\Http\Controllers\Dashboard\ProductCategoryController as DashboardProductCategoryController;
+use App\Http\Controllers\Dashboard\ArticleController as DashboardArticleController;
 
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -64,4 +65,12 @@ Route::middleware('auth', 'isActiveUser', 'isAdmin')->group(function () {
     Route::post('/dashboard/kategori-produk/tambah', [DashboardProductCategoryController::class, 'store'])->name('dashboard.product-category.store');
     Route::put('/dashboard/kategori-produk/{productCategory:slug}/ubah', [DashboardProductCategoryController::class, 'update'])->name('dashboard.product-category.update');
     Route::delete('/dashboard/kategori-produk/{productCategory:slug}/hapus', [DashboardProductCategoryController::class, 'destroy'])->name('dashboard.product-category.destroy');
+
+    // Dashboard Artikel
+    Route::get('/dashboard/artikel', [DashboardArticleController::class, 'index'])->name('dashboard.article.index');
+    Route::get('/dashboard/artikel/tambah', [DashboardArticleController::class, 'create'])->name('dashboard.article.create');
+    Route::post('/dashboard/artikel/tambah', [DashboardArticleController::class, 'store'])->name('dashboard.article.store');
+    Route::get('/dashboard/artikel/{article:slug}/ubah', [DashboardArticleController::class, 'edit'])->name('dashboard.article.edit');
+    Route::put('/dashboard/artikel/{article:slug}/ubah', [DashboardArticleController::class, 'update'])->name('dashboard.article.update');
+    Route::delete('/dashboard/artikel/{article:slug}/hapus', [DashboardArticleController::class, 'destroy'])->name('dashboard.article.destroy');
 });
