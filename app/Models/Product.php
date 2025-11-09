@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
     /** @use HasFactory<\Database\Factories\ProductFactory> */
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     protected $fillable = [
         'product_category_id',
@@ -27,6 +28,15 @@ class Product extends Model
     protected $casts = [
         'facility' => 'array',
     ];
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ],
+        ];
+    }
 
     // Relasi ke kategori
     public function category()

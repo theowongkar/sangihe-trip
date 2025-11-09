@@ -12,6 +12,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\UserController as DashboardUserController;
 use App\Http\Controllers\Dashboard\ProductCategoryController as DashboardProductCategoryController;
 use App\Http\Controllers\Dashboard\ArticleController as DashboardArticleController;
+use App\Http\Controllers\Dashboard\ProductController as DashboardProductController;
 
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -73,4 +74,12 @@ Route::middleware('auth', 'isActiveUser', 'isAdmin')->group(function () {
     Route::get('/dashboard/artikel/{article:slug}/ubah', [DashboardArticleController::class, 'edit'])->name('dashboard.article.edit');
     Route::put('/dashboard/artikel/{article:slug}/ubah', [DashboardArticleController::class, 'update'])->name('dashboard.article.update');
     Route::delete('/dashboard/artikel/{article:slug}/hapus', [DashboardArticleController::class, 'destroy'])->name('dashboard.article.destroy');
+
+    // Dashboard Produk
+    Route::get('/dashboard/produk', [DashboardProductController::class, 'index'])->name('dashboard.product.index');
+    Route::get('/dashboard/produk/tambah', [DashboardProductController::class, 'create'])->name('dashboard.product.create');
+    Route::post('/dashboard/produk/tambah', [DashboardProductController::class, 'store'])->name('dashboard.product.store');
+    Route::get('/dashboard/produk/{product:slug}/ubah', [DashboardProductController::class, 'edit'])->name('dashboard.product.edit');
+    Route::put('/dashboard/produk/{product:slug}/ubah', [DashboardProductController::class, 'update'])->name('dashboard.product.update');
+    Route::delete('/dashboard/produk/{product:slug}/hapus', [DashboardProductController::class, 'destroy'])->name('dashboard.product.destroy');
 });
