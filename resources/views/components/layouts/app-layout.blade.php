@@ -8,12 +8,12 @@
 
     {{-- Metadata --}}
     <meta name="description"
-        content="Aplikasi Rencana Perjalanan Wisata Kepulauan Sangihe. Sistem berbasis web yang membantu wisatawan membuat dan mengatur itinerary wisata secara mudah dan efisien.">
+        content="Website Sangihe Trip. Dirancang untuk membantu wisatawan mengatur itinerary wisata secara efisien.">
     <meta name="keywords" content="Sangihe Trip, promosi umkm, media promosi">
     <meta name="author" content="Silvana Landeng">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta property="og:title" content="Sangihe Trip - {{ $title }}">
-    <meta property="og:description" content="Aplikasi Rencana Perjalanan Wisata Kepulauan Sangihe.">
+    <meta property="og:description" content="Website Sangihe Trip. Dirancang untuk membantu wisatawan mengatur itinerary wisata secara efisien.">
     <meta property="og:image" content="{{ asset('img/application-logo.svg') }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
